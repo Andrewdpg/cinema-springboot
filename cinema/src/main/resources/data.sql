@@ -5,9 +5,9 @@ INSERT INTO theater (theater_id, name) VALUES
 INSERT INTO auditorium (auditorium_id, number, theater_theater_id) VALUES
                                                                        ('f5d5f1d0-6c54-4b01-90e6-d701748f0851', 1, 'd290f1ee-6c54-4b01-90e6-d701748f0851');
 
-INSERT INTO movie (movie_id, title, director, runtime, release_date) VALUES
-                                                                         ('1234abcd-6c54-4b01-90e6-d701748f0851', 'The Matrix', 'Wachowski', 136, '1999-03-31'),
-                                                                         ('6a5f043c-852e-4aeb-ba8d-50ab5fff3420', 'Inception', 'Christopher Nolan', 148, '2010-07-16');
+INSERT INTO movie (movie_id, title, director, runtime, release_date, image) VALUES
+                                                                         ('1234abcd-6c54-4b01-90e6-d701748f0851', 'The Matrix', 'Wachowski', 136, '1999-03-31', 'https://i.blogs.es/8b8798/06-06-matrix/840_560.jpg'),
+                                                                         ('6a5f043c-852e-4aeb-ba8d-50ab5fff3420', 'Inception', 'Christopher Nolan', 148, '2010-07-16', 'https://elcomercio.pe/resizer/MNtB6o92-pW0izK0_PXbSSUU6C0=/1200x800/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/EKQC727E3JGH3PZQO2IEAGAQOM.jpg');
 
 INSERT INTO customer (email, fullname, phone) VALUES
                                                   ('john.doe@example.com', 'John Doe', '555-1234'),

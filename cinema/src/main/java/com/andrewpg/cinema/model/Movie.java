@@ -13,6 +13,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.awt.*;
 import java.util.Date;
 import java.util.UUID;
 
@@ -49,4 +50,7 @@ public class Movie {
     @Column(name = "release_date", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date releaseDate;
+
+    @Column(name = "image", nullable = false)
+    private String image;
 }

@@ -5,6 +5,13 @@ import com.andrewpg.cinema.dto.DeleteTicketRequest;
 import com.andrewpg.cinema.dto.OperationResponse;
 import com.andrewpg.cinema.dto.TicketResponse;
 
+/**
+ * TicketService interface
+ * Provides methods for creating and deleting tickets.
+ *
+ * @version 1.0
+ * @since 1.0
+ */
 public interface TicketService {
 
     /**
