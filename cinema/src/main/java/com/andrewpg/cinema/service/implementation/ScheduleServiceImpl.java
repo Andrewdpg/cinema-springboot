@@ -39,6 +39,7 @@ public class ScheduleServiceImpl implements ScheduleService {
                     .time(schedule.getTime())
                     .date(schedule.getDate())
                     .movieTitle(schedule.getMovie().getTitle())
+                    .price(schedule.getPrice())
                     .build()
         ).collect(Collectors.toList());
     }

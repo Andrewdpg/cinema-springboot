@@ -63,4 +63,7 @@ public class Schedule {
 
     @OneToMany(mappedBy = "schedule", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Ticket> tickets;
+
+    @Column(name = "price", nullable = false)
+    private double price;
 }

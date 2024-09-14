@@ -33,7 +33,7 @@ public class SeatController {
      */
     @GetMapping
     public ResponseEntity<List<SeatDto>> getAvailableSeats(@RequestParam UUID scheduleId) {
-        List<SeatDto> seats = seatService.getAvailableSeatsBySchedule(scheduleId);
+        List<SeatDto> seats = seatService.getSeatsBySchedule(scheduleId);
         return ResponseEntity.ok(seats);
     }
 }

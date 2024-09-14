@@ -18,4 +18,5 @@ public class ScheduleDto {
     private Date time;
     private UUID movieId;
     private String movieTitle;
+    private double price;
 }

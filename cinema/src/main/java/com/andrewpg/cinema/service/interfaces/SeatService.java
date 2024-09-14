@@ -15,10 +15,10 @@ import java.util.UUID;
 public interface SeatService {
 
     /**
-     * Retrieves all available seats for a given showtime.
+     * Retrieves all seats for a given showtime.
      *
      * @param scheduleId the schedule id to retrieve available seats for
      * @return A list of SeatDto objects.
      */
-    List<SeatDto> getAvailableSeatsBySchedule(UUID scheduleId);
+    List<SeatDto> getSeatsBySchedule(UUID scheduleId);
 }
