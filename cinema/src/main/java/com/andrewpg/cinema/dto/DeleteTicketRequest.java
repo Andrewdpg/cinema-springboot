@@ -2,6 +2,8 @@ package com.andrewpg.cinema.dto;
 
 import lombok.Data;
 
+import java.util.UUID;
+
 /**
  * DeleteTicketRequest DTO
  * Contains the ticketId to be deleted.
@@ -11,5 +13,5 @@ import lombok.Data;
  */
 @Data
 public class DeleteTicketRequest {
-    private String ticketId;
+    private UUID ticketId;
 }

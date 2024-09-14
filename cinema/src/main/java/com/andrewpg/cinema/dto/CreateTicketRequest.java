@@ -1,5 +1,6 @@
 package com.andrewpg.cinema.dto;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -20,6 +21,7 @@ public class CreateTicketRequest {
     @NotNull(message = "Schedule ID cannot be null")
     private UUID scheduleId;
 
+    @Email(message = "Customer email must be a valid email address")
     @NotNull(message = "Customer email cannot be null")
     private String customerEmail;
 

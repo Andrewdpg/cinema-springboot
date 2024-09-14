@@ -66,6 +66,10 @@ public class TicketServiceImpl implements TicketService {
             .map(ReservationRequest::getSeatId)
             .collect(Collectors.toList()));
 
+        if(seats.size() != request.getReservations().size()) {
+            throw new IllegalArgumentException("One or more seats not found.");
+        }
+
         if (!reservationRepository.findBySeatInAndTicketSchedule(seats, scheduleOpt).isEmpty()) {
             throw new IllegalArgumentException("One or more seats are already reserved for this schedule.");
         }
@@ -88,7 +92,7 @@ public class TicketServiceImpl implements TicketService {
     @Override
     @Transactional
     public OperationResponse deleteTicket(DeleteTicketRequest request) {
-        Ticket ticket = ticketRepository.findById(UUID.fromString(request.getTicketId()))
+        Ticket ticket = ticketRepository.findById(request.getTicketId())
             .orElseThrow(()-> new IllegalArgumentException("Ticket not found."));
 
         ticketRepository.delete(ticket);
