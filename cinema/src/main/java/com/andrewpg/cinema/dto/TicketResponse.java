@@ -1,5 +1,6 @@
 package com.andrewpg.cinema.dto;
 
+import lombok.Builder;
 import lombok.Data;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.UUID;
  * @since 1.0
  */
 @Data
+@Builder
 public class TicketResponse {
 
     private UUID ticketId;
@@ -20,10 +22,4 @@ public class TicketResponse {
     private String customerEmail;
     private List<ReservationResponse> reservations;
 
-    public TicketResponse(UUID ticketId, UUID scheduleId, String customerEmail, List<ReservationResponse> reservations) {
-        this.ticketId = ticketId;
-        this.scheduleId = scheduleId;
-        this.customerEmail = customerEmail;
-        this.reservations = reservations;
-    }
 }

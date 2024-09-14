@@ -1,6 +1,8 @@
 package com.andrewpg.cinema.service.implementation;
 
 import com.andrewpg.cinema.dto.CreateTicketRequest;
+import com.andrewpg.cinema.dto.DeleteTicketRequest;
+import com.andrewpg.cinema.dto.OperationResponse;
 import com.andrewpg.cinema.dto.ReservationRequest;
 import com.andrewpg.cinema.dto.ReservationResponse;
 import com.andrewpg.cinema.dto.TicketResponse;
@@ -20,6 +22,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 /**
@@ -39,6 +42,12 @@ public class TicketServiceImpl implements TicketService {
     private final SeatRepository seatRepository;
     private final ReservationRepository reservationRepository;
 
+    /**
+     * Creates a new ticket with associated reservations.
+     *
+     * @param request DTO containing the customer, schedule, and reservations.
+     * @return DTO containing the created ticket and associated reservations.
+     */
     @Override
     @Transactional
     public TicketResponse createTicket(CreateTicketRequest request) {
@@ -66,12 +75,24 @@ public class TicketServiceImpl implements TicketService {
         reservationRepository.saveAll(reservations);
 
         List<ReservationResponse> reservationResponses = reservations.stream()
-            .map(reservation -> new ReservationResponse(reservation.getReservationId(), reservation.getSeat().getSeatId()))
+            .map(reservation -> ReservationResponse.builder().reservationId(reservation.getReservationId()).seatId(reservation.getSeat().getSeatId()).build())
             .collect(Collectors.toList());
 
-        return new TicketResponse(savedTicket.getTicketId(),
-            savedTicket.getSchedule().getScheduleId(),
-            savedTicket.getCustomer().getEmail(),
-            reservationResponses);
+        return TicketResponse.builder()
+            .ticketId(savedTicket.getTicketId())
+            .scheduleId(savedTicket.getSchedule().getScheduleId())
+            .customerEmail(savedTicket.getCustomer().getEmail())
+            .reservations(reservationResponses).build();
+    }
+
+    @Override
+    @Transactional
+    public OperationResponse deleteTicket(DeleteTicketRequest request) {
+        Ticket ticket = ticketRepository.findById(UUID.fromString(request.getTicketId()))
+            .orElseThrow(()-> new IllegalArgumentException("Ticket not found."));
+
+        ticketRepository.delete(ticket);
+
+        return OperationResponse.builder().message("Ticket deleted successfully.").build();
     }
 }
